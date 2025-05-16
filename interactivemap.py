@@ -8,7 +8,16 @@ from dotenv import load_dotenv
 
 # Initialize OpenAI client
 client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
-
+# ----------- UX Contribution: Paul Adams -----------
+# Designed overall page layout (borders, padding, shadows)
+# Created pill-shaped tabs with hover animations & active state styling
+# Applied consistent typography (Inter, Lato, Roboto Slab)
+# Maintained cohesive blue color theme across UI components
+# Designed user Tip boxes for better onboarding & task guidance
+# Provides clear instructions on how to interact with every feature
+# Beautified overall UI layout for professional, user-friendly appearance
+# --------------------------------------------------------
+# ---------------------------------------------------
 # --------- PAGE-LIKE BORDER & STYLING ---------
 st.markdown("""
 <style>
@@ -196,7 +205,10 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "Home", "Map Viewer", "AI Site Analysis",
     "Community Pulse", "Resident Matching", "Post-Site Feedback"
 ])
-
+# ----------- UX Contribution: Paul Adams -----------
+# Developed animated main heading with hover effects
+# For San Jose EIH Site Explorer branding enhancement
+# ---------------------------------------------------
 # --------- HOME TAB ---------
 # --------- HOME TAB ---------
 with tab1:
@@ -227,7 +239,7 @@ with tab1:
                 
     """, unsafe_allow_html=True)
     st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
-
+# ----------- UX Contribution: Paul Adams -----------
     # ---------- BEAUTIFUL DATA PREVIEW ----------
     import pandas as pd
     import streamlit as st
@@ -245,7 +257,9 @@ with tab1:
     """, unsafe_allow_html=True)
 
     df = pd.read_csv('san_jose_eih_sites.csv')
-
+    
+#----------- UX Contribution: Paul Adams -----------
+#Created metric for synthetic data to look more digestable to users
     # Convert sentiment to percent if needed
     if "sentiment_score" in df.columns and df["sentiment_score"].max() <= 1.5:
         df["sentiment_score"] = df["sentiment_score"] * 100
@@ -285,7 +299,7 @@ with tab1:
     if not default_cols:
         default_cols = list(df_display.columns)
     cols = st.multiselect("Columns to display:", df_display.columns, default=default_cols)
-
+# ----------- UX Contribution: Paul Adams -----------
     # Style functions
     def color_sentiment(val):
         try:
@@ -319,8 +333,11 @@ with tab1:
             subset=[col for col in ["Library Proximity", "Hospital Proximity"] if col in cols]
         )
     )
-
+# ----------- UX Contribution: Paul Adams -----------
+# Designed informative pill-shaped column description panel
+# Enhanced data readability with color highlights & layout
     # Column descriptions (open by default)
+    
     with st.expander("Column Descriptions", expanded=True):
         st.markdown("""
         <div style="
@@ -357,7 +374,8 @@ with tab1:
         </ul>
         </div>
         """, unsafe_allow_html=True)
-
+        
+#----------- UX Contribution: Paul Adams -----------
     # Data table (open by default)
     with st.expander("Preview Raw Data Table", expanded=True):
         st.dataframe(styled, use_container_width=True)
@@ -372,7 +390,10 @@ with tab1:
 
 
 # --------- MAP VIEWER TAB ---------
-
+# ----------- UX Contribution: Paul Adams -----------
+# Designed pop-up tooltip UI for map sites
+# Included site images, infrastructure info, and suitability tags
+# ---------------------------------------------------------------
 with tab2:
     st.header("Interactive Map of Candidate EIH Sites")
     
@@ -431,7 +452,7 @@ with tab2:
         zoom=11,
         pitch=0
     )
-
+# ----------- UX Contribution: Paul Adams -----------
     # Tooltip with image URL
     tooltip_text = """
     <b>Site:</b> {site_name}<br>
@@ -470,6 +491,7 @@ st.markdown("""
 
 with tab3:
     st.header("AI-Powered Site Analysis")
+    # ----------- UX Contribution: Paul Adams -----------
     # --- User-friendly explanation under the title ---
     st.markdown("""
         <div style="background:#f6f8fb; border-radius:12px; box-shadow:0 2px 14px rgba(23,78,166,0.06);
@@ -613,6 +635,7 @@ with tab4:
 
 # --------- RESIDENT MATCHING TAB ---------
 with tab5:
+    #----------- UX Contribution: Paul Adams -----------
     # --- ENSURE INPUT LABELS APPEAR BLACK ---
     st.markdown("""
         <style>
@@ -688,6 +711,7 @@ Be thoughtful, empathetic, and specific."""
 
 # --------- FEEDBACK TAB ---------
 with tab6:
+    #----------- UX Contribution: Paul Adams -----------
     # CSS: Label is black, user's typed text in textarea is white, background stays as theme
     st.markdown("""
         <style>
